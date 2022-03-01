@@ -72,5 +72,8 @@ int main(){
 	cartesian(setA, setB, n1, n2);
 	printf(" }");
 	
+	free(setA);
+	free(setB);
+	
 	return 0;
 }
