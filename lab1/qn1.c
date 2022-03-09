@@ -20,6 +20,7 @@ int* make_set(int *set, int *n){
 		}
 	}
 	
+	free(set);
 	m_set = (int*)realloc(m_set, k *sizeof(int));
 	*n = k;
 	
@@ -30,17 +31,12 @@ int* make_set(int *set, int *n){
 void uni_sets(int set1[], int set2[], int n1, int n2){
 	
 	int i , j;
+	int first = 1;
 	
 	difference(set1, set2, n1, n2);
 	
 	for(i = 0; i < n2; i++){
-		if(i < n2 -1){
-			printf("%d, ", set2[i]);
-		}
-		
-		else{
-			printf("%d ", set2[i]);
-		}
+		printf(", %d", set2[i]);
 	}
 	
 	
@@ -49,45 +45,46 @@ void uni_sets(int set1[], int set2[], int n1, int n2){
 
 void inter_sets(int set1[], int set2[], int n1, int n2){
 	int i, j;
+	int first = 1;
 	
 	for(i = 0; i < n1; i++){
-		int flag = 0;
 		for(j = 0; j < n2; j++){
 			if(set1[i] == set2[j]){
-				flag = 1;
+				if(first){
+					printf(" %d", set1[i]);
+					first = 0;
+				}
+				else{
+					printf(", %d", set1[i]);
+				}
 				break;
 			}
 		}
-		if(flag){
-			if(i < n1){
-				printf("%d, ", set1[i]);
-			}
-			else{
-				printf("%d ", set1[i]);
-			}
-		}
+		
 	}
 
 }
 
 
 void difference(int set1[], int set2[], int n1, int n2){
-	int i , j;
+	int i , j, first = 1;
+
 	for(i = 0; i < n1; i++){
 		int flag = 0;
 		for(j = 0; j < n2; j++){
 			if(set1[i] == set2[j]){
 				flag = 1;
-				break;
+				break;	
 			}
 		}
 		if(!flag){
-			if(i < n1){
-				printf("%d, ", set1[i]);
-			}
-			else{
-				printf("%d ", set1[i]);
-			}
+				if(first){
+					printf(" %d", set1[i]);
+					first = 0;
+				}
+				else{
+					printf(", %d", set1[i]);
+				}
 		}
 	}
 }
@@ -96,6 +93,7 @@ void difference(int set1[], int set2[], int n1, int n2){
 void symmetric_diff(int set1[], int set2[], int n1, int n2){
 	
 	difference(set1, set2, n1, n2);
+	printf(", ");
 	difference(set2, set1, n2, n1);
 
 }
