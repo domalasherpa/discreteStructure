@@ -2,6 +2,15 @@
 
 using namespace std;
 
+void print(int val){
+	if(val){
+		cout << "T";
+	}
+	else{
+		cout << "F";
+	}
+}
+
 int main(){
 	
 	int p[2] = {0, 1};
@@ -16,23 +25,26 @@ int main(){
 		for(int j = 0; j <2; j++){//q
 			for(int k = 0; k < 2;k++){//r
 				
-				cout << p[i] << "\t" << q[j] << "\t"<< r[k]<<"\t";
+				print(p[i]); cout <<"\t";
+				print(q[j]); cout << "\t";
+				print(r[k]); cout << "\t";
+				
 				
 				if(p[i] && (!q[j] || r[k])){ //left
 					if((!p[i] || r[k])){  //right 
-						cout << "1\n"; 
+						cout << "T\n"; 
 					}
 					else{
-						cout << "0\n";
+						cout << "F\n";
 					}
 				}
 				
 				else{
 					if(!(!p[i] || r[k])){ //right 
-						cout << "1\n";  
+						cout << "T\n";  
 					}
 					else{
-						cout << "0\n";
+						cout << "F\n";
 					}
 					
 				}
@@ -41,18 +53,5 @@ int main(){
 		}
 	}
 	
-	
-	/*
-
-	for(int i =0; i <2; i++){
-		for(int j = 0; j< 2;j++){
-			for(int k=0; k < 2; k++){
-				cout << p[i] << "\t" << q[j] << "\t"<< r[k]<<"\n";
-		    }
-		}
-	}
-	*/
-
-
 	return 0;
 }
