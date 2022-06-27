@@ -8,7 +8,7 @@ int findgcd(int n1, int n2){
 	// n2 = rem;
 	
 	if(n1 % n2 == 0){
-		return n1;
+		return n2;
 	}
 	
 	return findgcd(n2, n1%n2);
